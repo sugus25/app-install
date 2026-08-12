@@ -1,97 +1,11 @@
-<!DOC PYE <html lang="th">
+<!DOCTYPE html>
+<html lang="th">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-     <title>Fullscreen Video</title>
-<body>
-
-<font color="white">
-วันนี้
-<script>
-<!-- START HIDE
-print1="";
-print2="";
-print3="";
-today = new Date();
-weekday = today.getDay();
-if (weekday == 6) print1='วันเสาร์';
-if (weekday == 0) print1='วันอาทิตย์';
-if (weekday == 1) print1='วันจันทร์';
-if (weekday == 2) print1='วันอังคาร';
-if (weekday == 3) print1='วันพุธ';
-if (weekday == 4) print1='วันพฤหัสบดี';
-if (weekday == 5) print1='วันศุกร์';
-month = today.getMonth();
-if (month == 0) print2='เดือนมกราคม';
-if (month == 1) print2='เดือนกุมภาพันธ์';
-if (month == 2) print2='เดือนมีนาคม';
-if (month == 3) print2='เดือนเมษายน';
-if (month == 4) print2='เดือนพฤษภาคม';
-if (month == 5) print2='เดือนมิถุนายน';
-if (month == 6) print2='เดือนกรกฎาคม';
-if (month == 7) print2='เดือนสิงหาคม';
-if (month == 8) print2='เดือนกันยายน';
-if (month == 9) print2='เดือนตุลาคม';
-if (month == 10) print2='เดือนพฤศจิกายน';
-if (month == 11) print2='เดือนธันวาคม';
-date = today.getDate();
-year=today.getYear();
-document.write (print1,'ที่ ',date, ' ', print2,' พศ. ',year+2443);
-// STOP HIDE --></script>
-
-
-<hr>
-</font>
-
-
-<font color="green">
-<p id="time"></p>
-<script>
-  const today = new Date();
-
-  // แสดงเวลา
-  document.getElementById("time").textContent = today.toLocaleTimeString();
-
-</script>
-
-</font>
-      <style>
-   
-
-        videoContainer {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: contain; /* ค่าเริ่มต้น */
-        }
-
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            color: blue;
-        }
-
-        .button {
-            cursor: pointer;
-            padding: 5px 10px;
-            border: none;
-            background: #444;
-            color: red;
-            border-radius: 5px;
-        }
-
-        .button:hover {
-            background: #555;
-        }
-    </style>
- 
-
- <style>
- 
-
- 
+<title>Fullscreen Video - แยกหมวดหมู่</title>
+<style>
+  * { box-sizing: border-box; }
   body {
     margin: 0;
     background: #121212;
@@ -107,14 +21,6 @@ document.write (print1,'ที่ ',date, ' ', print2,' พศ. ',year+2443);
     box-shadow: 0 2px 8px rgba(0,0,0,0.7);
     gap: 16px;
   }
-  header a.logo-link img {
-    height: 48px;
-    filter: drop-shadow(0 0 3px #0f62fe);
-    transition: transform 0.3s ease;
-  }
-  header a.logo-link:hover img {
-    transform: scale(1.1);
-  }
 
   .running-text-container {
     flex: 1;
@@ -124,15 +30,12 @@ document.write (print1,'ที่ ',date, ' ', print2,' พศ. ',year+2443);
     height: 48px;
   }
   .running-text {
-  	
     display: inline-block;
     padding-left: 100%;
     animation: marquee 15s linear infinite;
     font-size: 20px;
     font-weight: 600;
-    color: #ffffff;
-    user-select: none;
-    text-shadow: 0 0 5px #0f62fe99;
+    color: #fff;
     line-height: 48px;
   }
   @keyframes marquee {
@@ -140,230 +43,206 @@ document.write (print1,'ที่ ',date, ' ', print2,' พศ. ',year+2443);
     100% { transform: translateX(-100%); }
   }
 
-  #horizontalMenu {
-    background-color: #222;
-    padding: 8px 16px;
+  #videoContainer {
+    width: 100%;
+    max-width: 900px;
+    margin: 20px auto;
+    background: #000;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  #videoPlayer {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #000;
+  }
+  .input-area {
+    margin: 10px 0;
     display: flex;
-    gap: 16px;
-    justify-content: center;
-    align-items: center;
+    gap: 8px;
   }
-  #horizontalMenu a.icon-link img {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-    transition: transform 0.3s ease, filter 0.3s ease;
-    filter: none;
+  .input-area input {
+    flex: 1;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: none;
   }
-  #horizontalMenu a.icon-link:hover img {
-    transform: scale(1.1);
-    filter: drop-shadow(0 0 5px #1e90ff);
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .button {
+    cursor: pointer;
+    padding: 8px 14px;
+    border: none;
+    background: #0f62fe;
+    color: #fff;
+    border-radius: 5px;
+    transition: background 0.2s;
+  }
+  .button:hover { background: #005fcc; }
+
+  /* === ส่วนหมวดหมู่ === */
+  .category-tab {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px;
+  }
+  .category-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid #444;
+    background: #222;
+    color: #ccc;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .category-btn:hover,
+  .category-btn.active {
+    background: #0f62fe;
+    color: #fff;
+    border-color: #0f62fe;
   }
 
-
-  /* ปรับเป็นกริด 4 คอลัมน์สำหรับช่องรายการ */
+  /* === รายการช่อง === */
   #channelList {
     width: 100%;
     max-width: 900px;
-    margin: 0 auto 30px;
+    margin: 0 auto 40px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 16px;
+    gap: 12px;
+    padding: 10px;
   }
   .channel-item {
     cursor: pointer;
     background: #222;
     border-radius: 8px;
-    padding: 12px;
+    padding: 10px;
     display: flex;
     align-items: center;
-    gap: 12px;
-    box-shadow: inset 0 0 5px transparent;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
-    user-select: none;
-    outline-offset: 4px;
+    gap: 10px;
+    transition: all 0.25s ease;
   }
   .channel-item:hover,
-  .channel-item:focus {
-    background-color: #0f62fe;
-    box-shadow: 0 0 15px #1e90ff;
-    transform: scale(1.05);
-    outline: none;
-  }
   .channel-item.active {
-    background-color: #005fcc;
-    box-shadow: 0 0 20px #3ea0ff;
-    transform: scale(1.07);
+    background-color: #0f62fe;
+    transform: scale(1.03);
   }
   .channel-item img {
-    width: 70px;
-    height: 40px;
+    width: 60px;
+    height: 36px;
     object-fit: contain;
-    border-radius: 6px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.5);
+    border-radius: 4px;
   }
   .channel-name {
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 15px;
+    font-weight: 600;
     color: #eee;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-#slideShow {
-  width: 90%;
-  max-width: 900px;
-  margin: 0 auto 50px;
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  padding: 16px;
-  border-radius: 12px;
-  background: rgba(18, 18, 18, 0.4);
-  backdrop-filter: blur(5px);
-}
-
-#slideShow a {
-  display: block;
-  width: 220px;
-  height: 124px;
-  border-radius: 10px;
-  overflow: hidden;
-  flex-shrink: 0;
-  position: relative;
-}
-
-#slideShow a img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: fit; /* สำคัญ: ตัดภาพให้พอดี */
-  border-radius: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
-}
-
-#slideShow a img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px #1e90ff;
-}
-
-
-  #channelList::-webkit-scrollbar,
-  #slideShow::-webkit-scrollbar {
-    height: 8px;
-  }
-  #channelList::-webkit-scrollbar-thumb,
-  #slideShow::-webkit-scrollbar-thumb {
-    background-color: #0f62fe99;
-    border-radius: 4px;
-  }
-  #channelList::-webkit-scrollbar-track,
-  #slideShow::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
+  /* ซ่อนกลุ่มที่ไม่ได้เลือก */
+  .channel-group { display: contents; }
+  .channel-group.hidden { display: none; }
 
   @media (max-width: 600px) {
-    #videoPlayer {
-      width: 100%;
-      height: 200px;
-    }
-    .channel-item {
-      padding: 10px;
-      gap: 8px;
-    }
-    .channel-item img {
-      width: 50px;
-      height: 28px;
-    }
-    .channel-name {
-      font-size: 16px;
-    }
-    #slideShow a img {
-      width: 150px;
-      height: 85px;
-    }
+    #channelList { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+    .channel-item img { width: 48px; height: 28px; }
+    .channel-name { font-size: 13px; }
   }
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #000;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-                #videoContainer {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin: auto;
-            background: black;
-        }
-        
-        #player {
-            width: 100%;
-            max-width: 100%;
-            aspect-ratio: 16/9; /* ทำให้วิดีโอรักษาสัดส่วน */
-        }
-        #channel-list {
-            margin: 10px auto;
-            max-width: 800px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            justify-content: center;
-        }
-        .channel {
-            cursor: pointer;
-            padding: 5px;
-            background: #222;
-            border: 1px solid #444;
-            border-radius: 5px;
-            text-align: center;
-            width: 50px;
-        }
-        .channel img {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 5px;
-        }
-        .channel:hover {
-            background: #000;
-        }
-    </style>
+</style>
+</head>
+<body>
 
-    <font color="blue">
-<div id="videoContainer">
-    <video id="videoPlayer" controls>
-        <source src="" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
- 
-    <input type="text" id="videoInput" placeholder="กรอก URL ของไฟล์ .m3u8 ที่นี่" />
-    <button id="loadVideoBtn">▶</button>
-    
-    <div class="controls">
-        <button class="button" id="stretch">Stretch</button>
-        <button class="button" id="crop">Crop</button>
-        <button class="button" id="zoom">Zoom</button>
-        <button class="button" id="fullscreen">Fullscreen</button>
+<header>
+  <div class="running-text-container">
+    <div class="running-text">
+      <script>
+        const days = ['วันอาทิตย์','วันจันทร์','วันอังคาร','วันพุธ','วันพฤหัสบดี','วันศุกร์','วันเสาร์'];
+        const months = ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
+        const t = new Date();
+        document.write(`${days[t.getDay()]} ที่ ${t.getDate()} ${months[t.getMonth()]} พ.ศ. ${t.getFullYear()+543}`);
+      </script> — เวลา: <span id="time"></span>
     </div>
-</div>
-
-    </font>
-</br>
-
-
-  <div id="channelList" aria-label="รายการช่อง"></div>
-
-<div id="slideShow" aria-label="ภาพสไลด์"></div>
-
+  </div>
+</header>
 
 <script>
-  const m3uData = `
+setInterval(()=>{
+  document.getElementById("time").textContent = new Date().toLocaleTimeString('th-TH');
+},1000);
+</script>
+
+<!-- เครื่องเล่นวิดีโอ -->
+<div id="videoContainer">
+  <video id="videoPlayer" controls></video>
+  <div class="input-area">
+    <input type="text" id="videoInput" placeholder="📋 วางลิงก์ .m3u8 หรือ URL วิดีโอ แล้วกด ▶ เล่น" />
+    <button class="button" id="loadVideoBtn">▶ เล่น</button>
+  </div>
+  <div class="controls">
+    <button class="button" id="stretch">Stretch</button>
+    <button class="button" id="crop">Crop</button>
+    <button class="button" id="zoom">Zoom</button>
+    <button class="button" id="fullscreen">เต็มจอ</button>
+  </div>
+</div>
+    
+    
+    
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  
+  import { getAuth, onAuthStateChanged } from "firebase/auth";
+
+const auth = getAuth(firebaseApp);
+onAuthStateChanged(auth, user => {
+  // Check for user status
+});
+  
+  
+  const firebaseConfig = {
+    apiKey: "AIzaSyBqqeH0K8sqQZu54A-ZLtfD_DFiNTqbKTc",
+    authDomain: "tvplayer-wepplay.firebaseapp.com",
+    projectId: "tvplayer-wepplay",
+    storageBucket: "tvplayer-wepplay.firebasestorage.app",
+    messagingSenderId: "80931188734",
+    appId: "1:80931188734:web:04054bbdf7af9e14985aaf",
+    measurementId: "G-NHXZ1H9KZZ"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+
+<!-- แถบเลือกหมวดหมู่ -->
+<div class="category-tab" id="categoryTab">
+  <button class="category-btn active" data-category="all">ทั้งหมด</button>
+</div>
+
+<!-- รายการช่อง แยกตามกลุ่ม -->
+<div id="channelList"></div>
+
+<script>
+// === ข้อมูล M3U ===
+const m3uData = `
 #EXTM3U
 
 #EXTINF:-1 tvg-logo="https://goodiptv.site/images/tv/tCz5uOf1XPW1RLITmCX46urCatF7NbI20250830165328Mono1.jpg" group-title="Top Channel",MonoMax 1
@@ -767,138 +646,143 @@ https://hls.iptv-th.workers.dev/live/2878/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://goodiptv.site/images/tv/DZsJQnXS8EGlBiSwDEGVn2GY9QRndQ420240418211852DLTV15.jpg" group-title="การศึกษา Learn",DLTV 15 มัธยมศึกษาปีที่ 6
 https://hls.iptv-th.workers.dev/live/2877/playlist.m3u8
 
+`;
 
-  `;
-
-  function parseM3U(data) {
-    const lines = data.trim().split('\n');
-    const channels = [];
-    for (let i = 0; i < lines.length; i++) {
-      if (lines[i].startsWith('#EXTINF')) {
-        const infoLine = lines[i];
-        const urlLine = lines[i + 1] || '';
-        const channel = {};
-        const logoMatch = infoLine.match(/tvg-logo="([^"]+)"/);
-        channel.logo = logoMatch ? logoMatch[1] : '';
-        const nameMatch = infoLine.match(/,\s*(.*)/);
-        channel.name = nameMatch ? nameMatch[1] : 'Unknown';
-        channel.url = urlLine.trim();
-        channels.push(channel);
-      }
+// === แปลงข้อมูล M3U ===
+function parseM3U(data) {
+  const lines = data.trim().split('\n');
+  const channels = [];
+  for (let i = 0; i < lines.length; i++) {
+    if (lines[i].startsWith('#EXTINF')) {
+      const infoLine = lines[i];
+      const urlLine = (lines[i+1] || '').trim();
+      const logoMatch = infoLine.match(/tvg-logo="([^"]+)"/);
+      const groupMatch = infoLine.match(/group-title="([^"]+)"/);
+      const nameMatch = infoLine.match(/,\s*(.*)$/);
+      channels.push({
+        name: nameMatch ? nameMatch[1].trim() : 'ไม่ระบุ',
+        logo: logoMatch ? logoMatch[1] : '',
+        group: groupMatch ? groupMatch[1].trim() : 'อื่นๆ',
+        url: urlLine
+      });
     }
-    return channels;
   }
+  return channels;
+}
 
-  const channels = parseM3U(m3uData);
+// === ตัวแปรหลัก ===
+const channels = parseM3U(m3uData);
+const videoPlayer = document.getElementById('videoPlayer');
+const channelList = document.getElementById('channelList');
+const categoryTab = document.getElementById('categoryTab');
+let currentCategory = 'all';
+let currentChannelIndex = -1;
 
-  const videoPlayer = document.getElementById('videoPlayer');
-  const channelList = document.getElementById('channelList');
-    const fullscreenBtn = document.getElementById('fullscreen');
-  let currentChannelIndex = 0;
-    const loadVideoBtn = document.getElementById('loadVideoBtn');
-    const videoInput = document.getElementById('videoInput');
-  function selectChannel(index) {
-    if (index < 0 || index >= channels.length) return;
-    currentChannelIndex = index;
-    videoPlayer.src = channels[index].url;
-    videoPlayer.play().catch(() => { /* บล็อก autoplay ไม่แสดง error */ });
+// === จัดกลุ่มช่องตามหมวดหมู่ ===
+const groups = {};
+channels.forEach((ch, idx) => {
+  if (!groups[ch.group]) groups[ch.group] = [];
+  groups[ch.group].push({ ...ch, index: idx });
+});
 
-    // อัปเดตไฮไลต์ช่องที่เล่น
-    document.querySelectorAll('.channel-item').forEach((el, i) => {
-      el.classList.toggle('active', i === index);
-    });
-  }
+// === สร้างปุ่มหมวดหมู่ ===
+Object.keys(groups).forEach(groupName => {
+  const btn = document.createElement('button');
+  btn.className = 'category-btn';
+  btn.dataset.category = groupName;
+  btn.textContent = groupName;
+  btn.onclick = () => switchCategory(groupName);
+  categoryTab.appendChild(btn);
+});
 
-  channels.forEach((ch, index) => {
+// === เปลี่ยนหมวดหมู่ที่แสดง ===
+function switchCategory(catName) {
+  currentCategory = catName;
+  // อัปเดตสถานะปุ่ม
+  document.querySelectorAll('.category-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.category === catName);
+  });
+  // แสดง/ซ่อน กลุ่มช่อง
+  document.querySelectorAll('.channel-group').forEach(grp => {
+    grp.classList.toggle('hidden', catName !== 'all' && grp.dataset.group !== catName);
+  });
+}
+
+// === สร้างรายการช่อง แยกตามกลุ่ม ===
+Object.entries(groups).forEach(([groupName, items]) => {
+  const groupDiv = document.createElement('div');
+  groupDiv.className = 'channel-group';
+  groupDiv.dataset.group = groupName;
+
+  items.forEach(ch => {
     const div = document.createElement('div');
-    div.classList.add('channel-item');
+    div.className = 'channel-item';
     div.setAttribute('tabindex', '0');
     div.setAttribute('role', 'button');
     div.setAttribute('aria-label', `ช่อง ${ch.name}`);
     div.innerHTML = `
-      <img src="${ch.logo}" alt="${ch.name} logo" />
+      <img src="${ch.logo}" alt="${ch.name}" onerror="this.src='https://via.placeholder.com/60x36?text=📺'">
       <div class="channel-name">${ch.name}</div>
     `;
-    div.onclick = () => selectChannel(index);
-    div.onkeypress = (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        selectChannel(index);
-        e.preventDefault();
-      }
-    };
-    channelList.appendChild(div);
+    div.onclick = () => selectChannel(ch.index, div);
+    groupDiv.appendChild(div);
   });
 
-  if (channels.length > 0) {
-    selectChannel(0);
-  }
+  channelList.appendChild(groupDiv);
+});
 
-  // ภาพสไลด์ (ตัวอย่าง)
-  const slideItems = [
-    { src: '/logo/movie.png', link: '/dootvzaa.html' },
-    { src: '/logo/images.jpeg', link: 'https://example.com/page2' },
-    { src: '/logo/images.jpeg', link: 'https://example.com/page3' },
-    { src: '/logo/images.jpeg', link: 'https://example.com/page4' },
-  ];
+// === เล่นช่องที่เลือก ===
+function selectChannel(index, element) {
+  if (index < 0 || index >= channels.length) return;
+  currentChannelIndex = index;
+  const ch = channels[index];
+  videoPlayer.src = ch.url;
+  videoPlayer.play().catch(e => console.log('Autoplay blocked:', e));
+  // ไฮไลต์
+  document.querySelectorAll('.channel-item').forEach(el => el.classList.remove('active'));
+  if (element) element.classList.add('active');
+}
 
-  const slideShow = document.getElementByIxd('slideShow');
-  slideItems.forEach(item => {
-    const a = document.createElement('a');
-    a.href = item.link;
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    a.setAttribute('aria-label', 'ลิงก์ภาพสไลด์');
+// === ปุ่มควบคุมวิดีโอ ===
+document.getElementById('loadVideoBtn').addEventListener('click', () => {
+  const url = document.getElementById('videoInput').value.trim();
+  if (!url) return alert('กรุณากรอก URL ก่อนครับ');
+  videoPlayer.src = url;
+  videoPlayer.play().catch(e => alert('ไม่สามารถเล่นได้: ' + e.message));
+});
 
-    const img = document.createElement('img');
-    img.src = item.src;
-    img.alt = "Slide image";
-
-    a.appendChild(img);
-    slideShow.appendChild(a);
-  });
+document.getElementById('stretch').onclick = () => videoPlayer.style.objectFit = 'fill';
+document.getElementById('crop').onclick = () => videoPlayer.style.objectFit = 'cover';
+document.getElementById('zoom').onclick = () => {
+  videoPlayer.style.objectFit = (videoPlayer.style.objectFit === 'none') ? 'contain' : 'none';
+};
+document.getElementById('fullscreen').onclick = () => {
+  if (videoPlayer.requestFullscreen) videoPlayer.requestFullscreen();
+  else if (videoPlayer.webkitRequestFullscreen) videoPlayer.webkitRequestFullscreen();
+};
 </script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-<script>
-        loadVideoBtn.addEventListener('click', () => {
-        const videoURL = videoInput.value;
-        if (videoURL) {
-            videoPlayer.src = videoURL; 
-            videoPlayer.play(); 
-        } else {
-            alert('กรุณากรอก URL ของวีดีโอ');
-        }
-    });
-    fullscreenBtn.addEventListener('click', () => {
-        if (videoPlayer.requestFullscreen) {
-            videoPlayer.requestFullscreen();
-        } else if (videoPlayer.webkitRequestFullscreen) {
-            videoPlayer.webkitRequestFullscreen();
-        } else if (videoPlayer.msRequestFullscreen) {
-            videoPlayer.msRequestFullscreen();
-        }
-    });
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBqqeH0K8sqQZu54A-ZLtfD_DFiNTqbKTc",
+    authDomain: "tvplayer-wepplay.firebaseapp.com",
+    projectId: "tvplayer-wepplay",
+    storageBucket: "tvplayer-wepplay.firebasestorage.app",
+    messagingSenderId: "80931188734",
+    appId: "1:80931188734:web:3e1a7ae2b356f36e985aaf",
+    measurementId: "G-XQRXZ5CZR5"
+  };
 
-    const stretchBtn = document.getElementById('stretch');
-    const cropBtn = document.getElementById('crop');
-    const zoomBtn = document.getElementById('zoom');
-    
-    stretchBtn.addEventListener('click', () => {
-        videoPlayer.style.objectFit = 'fill'; // Stretch
-    });
-
-    cropBtn.addEventListener('click', () => {
-        videoPlayer.style.objectFit = 'cover'; // Crop
-    });
-
-    zoomBtn.addEventListener('click', () => {
-        if (videoPlayer.style.objectFit === 'none') {
-            videoPlayer.style.objectFit = 'contain'; // Zoom
-        } else {
-            videoPlayer.style.objectFit = 'none'; // Reset
-        }
-    }
-);
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
 </script>
-
-<script src="https://raw.githubusercontent.com/akin230/akin230/refs/heads/main/TVZAPLUS2.html"></script><script src="https://www.drv.tw/inc/wd.js?s=streamjng5gfast5stream"></script></body>
+</body>
 </html>
